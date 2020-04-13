@@ -14,6 +14,10 @@ class SolverService {
         return axios.delete(`http://localhost:8080/jpa/registros/all/${id}`);
     }
 
+    resolverPeticionService(registro) {
+        return axios.get('http://localhost:8080/registros/respuesta', registro);
+    }
+
 }
 
 export default new SolverService()

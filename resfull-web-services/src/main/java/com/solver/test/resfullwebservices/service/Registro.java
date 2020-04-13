@@ -16,18 +16,21 @@ public class Registro {
 	private String cedula;
 	private String nombreArchivo;
 	private Date fechaEjecucion;
+	private String respuesta;
+	private String archivo;
 	
 	protected Registro() {
 	}
 
-	public Registro(long numero, String cedula, String nombreArchivo, Date fechaEjecucion) {
+	public Registro(long numero, String cedula, String nombreArchivo, Date fechaEjecucion, String archivo, String respuesta) {
 		super();
 		this.numero = numero;
 		this.cedula = cedula;
 		this.nombreArchivo = nombreArchivo;
 		this.fechaEjecucion = fechaEjecucion;
+		this.archivo = archivo;
+		this.respuesta = respuesta;
 	}
-	
 	
 	public Long getNumero() {
 		return numero;
@@ -54,7 +57,22 @@ public class Registro {
 		this.fechaEjecucion = fechaEjecucion;
 	}
 	
-	
+	public String getRespuesta() {
+		return respuesta;
+	}
+
+	public void setRespuesta(String respuesta) {
+		this.respuesta = respuesta;
+	}
+
+	public String getArchivo() {
+		return archivo;
+	}
+
+	public void setArchivo(String archivo) {
+		this.archivo = archivo;
+	}
+
 	@Override
 	public String toString() {
 		return "Registro [numero=" + numero + ", cedula=" + cedula + "]";

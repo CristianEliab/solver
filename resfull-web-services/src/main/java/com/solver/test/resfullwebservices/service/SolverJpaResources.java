@@ -22,7 +22,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class SolverJpaResources {
 	
 	@Autowired
-	private RegistrosService registroService;
+	private RegistrosService registrosService;
 	
 	@Autowired
 	private RegistroJpaRepository registroJpaRepository;
@@ -35,6 +35,12 @@ public class SolverJpaResources {
 	@GetMapping("/jpa/registros/all")
 	public List<Registro> getAllTodos(){
 		return registroJpaRepository.findAll();
+	}
+	
+	@GetMapping("/registros/respuesta")
+	public String resolverPeticion(Registro registro) {
+		Registro registroRespuesta = registrosService.resolverPeticion(registro);
+		return registroRespuesta.getRespuesta();
 	}
 	
 	@DeleteMapping("/jpa/registros/all/{id}")
@@ -50,7 +56,10 @@ public class SolverJpaResources {
 	}
 	
 	@PostMapping("/jpa/registros/all")
-	public ResponseEntity<Void> updateRegistro( @RequestBody Registro registro){
+	public ResponseEntity<Void> createRegistro( @RequestBody Registro registro){
+		
+		String respuesta = registrosService.resolverPeticion(registro).getRespuesta();
+		registro.setRespuesta(respuesta);
 		Registro regis = registroJpaRepository.save(registro);
 		//Get current 
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("registros/all").buildAndExpand(regis.getNumero()).toUri();

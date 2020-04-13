@@ -13,7 +13,8 @@ class HomeComponent extends Component {
             registros: [],
             cedula: '',
             archivo: '',
-            nombreArchivo: ''
+            nombreArchivo: '',
+            respuesta: ''
         }
 
         this.cargarPrueba = this.cargarPrueba.bind(this)
@@ -61,11 +62,10 @@ class HomeComponent extends Component {
             cedula: values.cedula,
             archivo: values.archivo,
             nombreArchivo: this.state.nombreArchivo,
-            fechaEjecucion: moment(new Date()).format('YYYY-MM-DD')
+            fechaEjecucion: moment(new Date()).format('YYYY-MM-DD'),
+            respuesta: ''
         }
         SolverService.crearRegistroService(registro).then(response => { this.refreshTodos() })
-
-
     }
 
     refreshTodos() {
@@ -138,6 +138,7 @@ class HomeComponent extends Component {
                                 <th scope="col">Nombre del archivo</th>
                                 <th scope="col">Fecha de ejecución</th>
                                 <th scope="col">Eliminar registro</th>
+                                <th scope="col">Respuesta registro</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -149,6 +150,7 @@ class HomeComponent extends Component {
                                         <td>{registro.nombreArchivo}</td>
                                         <td>{moment(registro.fechaEjecucion).format('YYYY-MM-DD')}</td>
                                         <td><button type="button" className="btn btn-danger" onClick={() => this.eliminarRegistro(registro.numero)}>Eliminar</button></td>
+                                        <td>{registro.respuesta}</td>
                                     </tr>
                             )}
                         </tbody>

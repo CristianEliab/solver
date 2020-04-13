@@ -24,11 +24,6 @@ public class SolverResources {
 	@Autowired
 	private RegistrosService registroService;
 	
-//	@GetMapping(path="/registros")
-//	public RegistrosService enviarRespuesta() {
-//		return new RegistrosService("Respuesta");
-//	}
-	
 	@GetMapping("/registros/all")
 	public List<Registro> getAllTodos(){
 		return registroService.findAll();
